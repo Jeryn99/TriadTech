@@ -1,15 +1,19 @@
 package net.threetag.triadtech.tweaks;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.threetag.triadtech.upgrade.TTUpgrades;
+import org.jetbrains.annotations.Nullable;
 import whocraft.tardis_refined.common.capability.TardisLevelOperator;
 import whocraft.tardis_refined.common.items.KeyItem;
 import whocraft.tardis_refined.common.tardis.TardisNavLocation;
@@ -24,20 +28,21 @@ import java.util.Optional;
 
 public class KeyTardisCallTweak {
 
-    public static InteractionResultHolder<ItemStack> rightClick(Player player, Level level, InteractionHand hand) {
+    public static InteractionResultHolder<ItemStack> rightClick(Player player, Level level, InteractionHand hand, @Nullable BlockPos pos) {
         var stack = player.getItemInHand(hand);
 
         if (!stack.isEmpty() && stack.getItem() instanceof KeyItem && level instanceof ServerLevel serverLevel) {
             ArrayList<ResourceKey<Level>> keyChain = KeyItem.getKeychain(stack);
-            var pos = player.blockPosition();
 
             if (!keyChain.isEmpty()) {
+                pos = findSpot(level, pos, player.blockPosition());
+
                 ResourceKey<Level> dimension = keyChain.get(0);
-                if (level.isEmptyBlock(pos.above()) && DimensionUtil.isAllowedDimension(level.dimension())) {
+                if (pos != null && DimensionUtil.isAllowedDimension(level.dimension())) {
                     ServerLevel tardisLevel = Platform.getServer().getLevel(dimension);
                     Optional<TardisLevelOperator> operatorOptional = TardisLevelOperator.get(tardisLevel);
 
-                    if (operatorOptional.isEmpty()) {
+                    if (operatorOptional.isEmpty() || !operatorOptional.get().getUpgradeHandler().isUpgradeUnlocked(TTUpgrades.EMERGENCY_EXIT.get())) {
                         return InteractionResultHolder.pass(stack);
                     }
 
@@ -56,6 +61,31 @@ public class KeyTardisCallTweak {
         }
 
         return InteractionResultHolder.pass(stack);
+    }
+
+    public static BlockPos findSpot(Level level, @Nullable BlockPos pos, BlockPos playerPos) {
+        if (pos != null && level.isEmptyBlock(pos) && level.isEmptyBlock(pos.above())) {
+            return pos;
+        } else {
+            var random = RandomSource.create();
+            int tries = 0;
+            pos = playerPos.offset((int) (random.nextFloat() - 0.5F * 10F), (int) (random.nextFloat() - 0.5F * 10F), (int) (random.nextFloat() - 0.5F * 10F));
+
+            while ((!level.isEmptyBlock(pos) || !level.isEmptyBlock(pos.above())) && tries < 30) {
+                pos = playerPos.offset((int) (random.nextFloat() - 0.5F * 10F), (int) (random.nextFloat() - 0.5F * 10F), (int) (random.nextFloat() - 0.5F * 10F));
+                tries++;
+            }
+
+            if (!level.isEmptyBlock(pos) || !level.isEmptyBlock(pos.above())) {
+                return null;
+            }
+
+            while (level.isEmptyBlock(pos.below()) && pos.getY() > level.getMinBuildHeight()) {
+                pos = pos.below();
+            }
+
+            return pos;
+        }
     }
 
 }

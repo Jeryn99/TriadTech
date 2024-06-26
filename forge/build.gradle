@@ -5,6 +5,24 @@ plugins {
 loom {
     forge {
         mixinConfig "triadtech.mixins.json"
+
+        runConfigs.configureEach {
+            if (name == "client") {
+                runDir = "../run"
+
+                if (System.getenv('MC_USERNAME') && System.getenv('MC_UUID') && System.getenv('MC_ACCESS_TOKEN')) {
+                    programArgs '--username', System.getenv('MC_USERNAME'), '--uuid', System.getenv('MC_UUID'), '--accessToken', System.getenv('MC_ACCESS_TOKEN')
+                }
+            } else if (name == "server") {
+                runDir = "../run/server-forge"
+            } else if (name == "data") {
+                programArgs '--existing', project(":common").file("src/main/resources/").absolutePath
+            }
+        }
+
+        dataGen {
+            mod "triadtech"
+        }
     }
 }
 
