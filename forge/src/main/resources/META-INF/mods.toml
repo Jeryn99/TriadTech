@@ -1,17 +1,20 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://github.com/ThreeTAG/TriadTech/issues"
+license = "All rights reserved"
 
 [[mods]]
 modId = "triadtech"
 version = "${version}"
 displayName = "TriadTech"
-authors = "Me!"
+authors = "Lucraft"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+An addon for TARDIS Refined, adding new upgrade for the TARDIS!
 '''
-#logoFile = ""
+logoFile = "triadtech_banner.png"
+logoBlur = false
+displayURL = "https://modrinth.com/project/triadtech"
+updateJSONURL = "https://squirrelcontrol.threetag.net/api/forge_updates/triadtech"
 
 [[dependencies.triadtech]]
 modId = "forge"
@@ -24,5 +27,12 @@ side = "BOTH"
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.triadtech]]
+modId = "tardis_refined"
+mandatory = true
+versionRange = "[2.0.2,)"
 ordering = "NONE"
 side = "BOTH"

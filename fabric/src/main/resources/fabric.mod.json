@@ -3,16 +3,16 @@
   "id": "triadtech",
   "version": "${version}",
   "name": "TriadTech",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "An addon for TARDIS Refined, adding new upgrade for the TARDIS!",
   "authors": [
-    "Me!"
+    "Lucraft"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://modrinth.com/project/triadtech",
+    "sources": "https://github.com/ThreeTAG/TriadTech",
+    "issues": "https://github.com/ThreeTAG/TriadTech/issues"
   },
-  "license": "CC0-1.0",
-  "icon": "assets/triadtech/icon.png",
+  "license": "All rights reserved",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -26,12 +26,9 @@
     "triadtech.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.11",
     "minecraft": "~1.20.1",
     "java": ">=17",
-    "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "fabric-api": "*",
+    "tardis_refined": ">=2.0.2"
   }
 }

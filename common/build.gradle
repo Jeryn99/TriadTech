@@ -9,3 +9,22 @@ dependencies {
     // Forge Config API Port
     modCompileOnlyApi "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${rootProject.forge_config_api_port_version}"
 }
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.archives_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url 'https://maven.threetag.net'
+            credentials {
+                username System.getenv('MAVEN_USERNAME')
+                password System.getenv('MAVEN_PASSWORD')
+            }
+        }
+    }
+}

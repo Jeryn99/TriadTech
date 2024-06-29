@@ -70,3 +70,22 @@ shadowJar {
 remapJar {
     input.set shadowJar.archiveFile
 }
+
+publishing {
+    publications {
+        mavenForge(MavenPublication) {
+            artifactId = rootProject.archives_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url 'https://maven.threetag.net'
+            credentials {
+                username System.getenv('MAVEN_USERNAME')
+                password System.getenv('MAVEN_PASSWORD')
+            }
+        }
+    }
+}

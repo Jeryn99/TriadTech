@@ -71,3 +71,22 @@ remapJar {
 sourceSets.main.resources {
     srcDir project(":forge").file("src/generated/resources").absolutePath
 }
+
+publishing {
+    publications {
+        mavenFabric(MavenPublication) {
+            artifactId = rootProject.archives_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url 'https://maven.threetag.net'
+            credentials {
+                username System.getenv('MAVEN_USERNAME')
+                password System.getenv('MAVEN_PASSWORD')
+            }
+        }
+    }
+}
