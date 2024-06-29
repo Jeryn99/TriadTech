@@ -23,6 +23,7 @@ public abstract class TTLangProvider extends LanguageProvider {
         @Override
         protected void addTranslations() {
             this.addUpgrade(TTUpgrades.EMERGENCY_EXIT.get(), "Emergency Exit", "Allows you to spawn your TARDIS when using the key. However, the key breaks during this.");
+            this.addUpgrade(TTUpgrades.BLUE_STABILIZERS.get(), "Blue Stabilizers", "With this upgrade, flight dances will no longer happen when you travel with the throttle at its lowest stage.");
         }
     }
 
@@ -35,6 +36,7 @@ public abstract class TTLangProvider extends LanguageProvider {
         @Override
         protected void addTranslations() {
             this.addUpgrade(TTUpgrades.EMERGENCY_EXIT.get(), "Notfall-Flucht", "Erlaubt es dir deine TARDIS mit deinem Schlüssel zu rufen. Allerdings geht der Schlüssel dabei kaputt.");
+            this.addUpgrade(TTUpgrades.BLUE_STABILIZERS.get(), "Blaue Stabilisatoren", "Mit diesem Upgrade kannst du ohne Probleme reisen während der Schubregler auf der niedrigsten Stufe ist.");
         }
     }
 
@@ -47,6 +49,7 @@ public abstract class TTLangProvider extends LanguageProvider {
         @Override
         protected void addTranslations() {
             this.addUpgrade(TTUpgrades.EMERGENCY_EXIT.get(), "Notfall-Flucht", "Erlaubt's dir dehne TARDIS mit dehnem Schlüssel zu rufen. Allerdings jeht der Schlüssel dabeh gapud.");
+            this.addUpgrade(TTUpgrades.BLUE_STABILIZERS.get(), "Bloe Stabilisatoren", "Mit diesem Upgrade gannste ohne Probleme reisen während dor Schubrechler auf dor niedrischsten Stufe is.");
         }
     }
 

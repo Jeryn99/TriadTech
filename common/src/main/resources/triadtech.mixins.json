@@ -6,6 +6,7 @@
   "client": [
   ],
   "mixins": [
+    "FlightDanceManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

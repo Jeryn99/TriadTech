@@ -1,4 +1,6 @@
 {
+  "upgrade.triadtech.blue_stabilizers": "Blue Stabilizers",
+  "upgrade.triadtech.blue_stabilizers.description": "With this upgrade, flight dances will no longer happen when you travel with the throttle at its lowest stage.",
   "upgrade.triadtech.emergency_exit": "Emergency Exit",
   "upgrade.triadtech.emergency_exit.description": "Allows you to spawn your TARDIS when using the key. However, the key breaks during this."
 }
