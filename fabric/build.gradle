@@ -66,6 +66,7 @@ shadowJar {
 
 remapJar {
     input.set shadowJar.archiveFile
+    archiveClassifier = "fabric"
 }
 
 sourceSets.main.resources {
