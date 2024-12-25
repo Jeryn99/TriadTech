@@ -2,7 +2,7 @@ package net.threetag.triadtech.upgrade;
 
 import net.minecraft.world.item.Items;
 import net.threetag.triadtech.TriadTech;
-import whocraft.tardis_refined.common.capability.upgrades.Upgrade;
+import whocraft.tardis_refined.common.capability.tardis.upgrades.Upgrade;
 import whocraft.tardis_refined.registry.DeferredRegistry;
 import whocraft.tardis_refined.registry.RegistrySupplier;
 import whocraft.tardis_refined.registry.TRItemRegistry;
