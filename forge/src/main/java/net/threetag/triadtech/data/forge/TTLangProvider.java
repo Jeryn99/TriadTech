@@ -5,7 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.threetag.triadtech.TriadTech;
 import net.threetag.triadtech.upgrade.TTUpgrades;
-import whocraft.tardis_refined.common.capability.upgrades.Upgrade;
+import whocraft.tardis_refined.common.capability.tardis.upgrades.Upgrade;
 import whocraft.tardis_refined.registry.TRUpgrades;
 
 public abstract class TTLangProvider extends LanguageProvider {
